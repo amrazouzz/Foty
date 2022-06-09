@@ -1,0 +1,2 @@
+# Foty
+Django-Soccer Website
