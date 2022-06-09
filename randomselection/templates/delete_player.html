@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}حذف لاعب{% endblock %}
+
+{% block body %}
+<h2>حذف لاعب من القائمة</h2>
+<p>متأكد ان اللاعب دا مش جاي؟</p>
+
+<div class="container">
+    <div class="row" style="align-self: center;">
+    <div class="col">
+        <div class="card card-body">
+            <table class="table table-hove">
+                <thead>
+                  <tr>
+                    <th scope="col">الاسم</th>
+                    <th scope="col">الرقم</th>
+                    <th scope="col">المركز</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{item}}</td>
+                    <td>{{item.number}}</td>
+                    <td>{{item.position}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            
+            
+            <form action="{% url 'delete_player' item.id %}" method="post">
+                {% csrf_token %}
+                <a class="btn btn-outline-secondary" href="{% url 'players_list' %}" role="button">رجوع</a>
+                <button type="submit" name="Confirm" class="btn btn-outline-danger">حذف</button>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}عمل تقسيمة جديدة{% endblock  %}
+
+{% block body %}
+<h1>يلا نعمل تقسيمة<h1>
+
+    <div class="row">
+        <div class="col">
+            <div class="">
+                <form action="" method="post" class="form-control form-control-lg">
+                    {% csrf_token %}
+                    {{form }}
+            
+                    <input type="submit" value="يلا بينا" name="Submit" class="btn btn-outline-success">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}

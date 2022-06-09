@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}تقسيمة عشوائية{% endblock %}
+
+{% block body %} 
+<h1>تقسيمة عشوائية</h1>
+<p>التقسيمة متوازنة يارايق ماتقلقش</p>
+
+<a class="btn btn-outline-dark" href="{% url 'create_new_selection' %}" role="button">أعمل تقسيمة جديدة</a>
+<a class="btn btn-outline-dark" href="{% url 'players_list' %}" role="button">قائمة اللاعبين</a>
+<a class="btn btn-outline-dark" href="{% url 'add_new_player' %}" role="button">اضافة لاعبين</a>
+
+<div class="container">
+
+    <div class="">
+        
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">المركز</th>
+            <th scope="col">الفريق الاول</th>
+            <th scope="col">الفريق الثاني</th>
+            <th scope="col">الفريق الثالث</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- gk -->
+            <tr>
+                <th scope="row">{{gks_ra.position}}</th>
+                <td>{{gks_ra}}</td>
+                <td>{{gks_rb}}</td>
+                <td>{{gks_rc}}</td>
+              </tr>
+              <!-- dif -->
+              
+                    <tr>
+                        <th scope="row">{{defs_a.position}}</th>
+                        <td>{{defs_f}}</td>
+                        <td>{{defs_a}}</td>
+                        <td>{{defs_b}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{defs_a.position}}</th>
+                        <td>{{defs_c}}</td>
+                        <td>{{defs_d}}</td>
+                        <td>{{defs_e}}</td>
+                    </tr>
+              
+                    <!-- mid -->
+              
+                    <tr>
+                        <th scope="row">{{mids_a.position}}</th>
+                        <td>{{mids_a}}</td>
+                        <td>{{mids_f}}</td>
+                        <td>{{mids_b}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{mids_a.position}}</th>
+                        <td>{{mids_c}}</td>
+                        <td>{{mids_d}}</td>
+                        <td>{{mids_e}}</td>
+                    </tr>
+
+                    <!-- FWD -->
+              
+                    <tr>
+                        <th scope="row">{{stk_a.position}}</th>
+                        <td>{{stk_a}}</td>
+                        <td>{{stk_f}}</td>
+                        <td>{{stk_b}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{stk_a.position}}</th>
+                        <td>{{stk_c}}</td>
+                        <td>{{stk_d}}</td>
+                        <td>{{stk_e}}</td>
+                    </tr>
+        </tbody>
+      </table>
+</div>
+{% endblock %}
