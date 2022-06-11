@@ -3,14 +3,20 @@ from multiprocessing import context
 from turtle import position
 from django.shortcuts import render, redirect
 import random
-
 from randomselection.models import Player
 from .forms import SelectionForm, PlayerForm
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from authntication.decorator import allowed_users
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin','users'])
 def home(response):
     context = {}
     return render(response,"../templates/home.html",context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin','users'])
 def selection(response):
     players = Player.objects.all()
     gks = Player.objects.filter(position="حارس")
@@ -85,6 +91,9 @@ def selection(response):
     }
     return render(response,"../templates/randomSelection.html",context)
 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def createNewSelection(request):
     form = SelectionForm()
     if request.method == 'POST':
@@ -96,7 +105,8 @@ def createNewSelection(request):
     context={'form': form}
     return render(request,"../templates/forms/create_selection.html",context)
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def AddPlayer(request):
     playerform = PlayerForm()
     if request.method =='POST':
@@ -110,6 +120,8 @@ def AddPlayer(request):
     context = {'playerForm':playerform, 'players':players}
     return render (request,'../templates/forms/add_players.html',context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def UpdatePlayer(request, pk):
     player = Player.objects.get(id=pk)
     form = PlayerForm(instance=player)
@@ -122,11 +134,14 @@ def UpdatePlayer(request, pk):
     context ={'form':form}
     return render(request,'../templates/update_player.html',context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin','users'])
 def PlayersList(request):
     players = Player.objects.all()
     return render(request,'../templates/players_list.html',{'players':players})
 
-
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
 def deletePlayer(request,pk):
     player = Player.objects.get(id=pk)
     if request.method == "POST":

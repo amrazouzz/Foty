@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 settings.py
+./foty/settings.py
+.settings.py
